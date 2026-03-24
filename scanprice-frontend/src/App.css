@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5rem;
+
+  padding: 5rem 10rem;
+  margin: 3rem;
+
+
+}
+
+.main h1 {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.student {
+  font-size: x-large;
+}
