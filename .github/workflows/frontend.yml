@@ -32,7 +32,7 @@ jobs:
           pnpm install
 
       - name: Build
-        run: pnpm run build
+        run: pnpm --filter scanprice-frontend build
 
       - name: Update S3 bucket
         run: aws s3 sync ./scanprice-frontend/dist/ ${{ vars.BUCKET_NAME }} --delete
