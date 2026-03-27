@@ -1,0 +1,40 @@
+name: Deploy to Amazon S3
+run-name: ${{ github.actor }} is deploying out GitHub Actions 🚀
+on:
+  push:
+    branches: [ 'main' ]
+    
+permissions:
+  id-token: write
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@main
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: eu-south-2
+
+      - name: Copy Repo
+        uses: actions/checkout@v6
+
+      - name: Install Dependencies
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - run: |
+          corepack enable pnpm
+          pnpm install
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Update S3 bucket
+        run: aws s3 sync ./scanprice-frontend/dist/ ${{ vars.BUCKET_NAME }} --delete
+
+      - name: Invalidate cloudFront cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
