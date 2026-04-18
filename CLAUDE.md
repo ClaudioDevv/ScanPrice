@@ -31,22 +31,58 @@ pnpm run lint # ESLint
 ## Project Structure
 
 ```
-scanPrice/
-├── client/ # React + Vite frontend
-│ ├── src/
-│ │ ├── components/ # Reusable UI components
-│ │ ├── pages/ # Route-level components
-│ │ ├── hooks/ # Custom React hooks
-│ │ ├── services/ # API calls (axios/fetch)
-│ │ └── types/ # TypeScript interfaces
-├── server/ # Express backend
-│ ├── src/
-│ │ ├── routes/ # Express routers
-│ │ ├── controllers/ # Route handlers
-│ │ ├── services/ # Business logic
-│ │ ├── db/ # DB connection + queries
-│ │ └── middlewares/ # Auth, error handling, etc.
-├── docs/ # Architecture, plans, notes
+ScanPrice/
+│
+├── .github/
+│   └── workflows/
+│       └── deploy-frontend.yml      # Build + sync a S3 + invalidar CloudFront
+│       
+│
+├── packages/
+│   ├── frontend/                    # React + Vite
+│   │   ├── public/
+│   │   ├── src/
+│   │   │   ├── assets/
+│   │   │   ├── components/
+│   │   │   ├── hooks/
+│   │   │   ├── pages/
+│   │   │   ├── services/            # Llamadas a la API
+│   │   │   ├── types/               # Tipos propios del frontend
+│   │   │   └── main.tsx
+│   │   ├── index.html
+│   │   ├── vite.config.ts
+│   │   └── package.json
+│   │
+│   ├── backend/                     # Node + Express
+│   │   ├── src/
+│   │   │   ├── controllers/
+│   │   │   ├── routes/
+│   │   │   ├── middleware/
+│   │   │   ├── models/              # Modelos de BD (pg)
+│   │   │   ├── services/
+│   │   │   ├── types/               # Tipos propios del backend
+│   │   │   └── index.ts
+│   │   ├── Dockerfile               # Para EC2
+│   │   └── package.json
+│   │
+│   └── scraper/                     # Servicio independiente
+│       ├── src/
+│       │   ├── scrapers/            # Un fichero por fuente
+│       │   ├── db/                  # Conexión y queries a PostgreSQL
+│       │   ├── utils/
+│       │   └── index.ts             # Entry point (puede usarse con cron local)
+│       ├── Dockerfile               # Para EC2 / EventBridge
+│       └── package.json
+│
+├── docker/
+│   ├── docker-compose.dev.yml       # Solo PostgreSQL (desarrollo)
+│   └── docker-compose.prod.yml      # Backend + Scraper (EC2)
+│
+│
+├── .env.example                     # Variables sin valores reales
+├── .gitignore
+├── pnpm-workspace.yaml
+└── package.json                     # Scripts raíz del monorepo
 └── CLAUDE.md
 ```
 
