@@ -23,11 +23,13 @@ jobs:
       - name: Copy Repo
         uses: actions/checkout@v6
 
-      - name: Install Dependencies
+      - name: Setup Node
         uses: actions/setup-node@v6
         with:
           node-version: '24'
-      - run: |
+
+      - name: Install dependencies
+        run: |
           corepack enable pnpm
           pnpm install
 
@@ -35,7 +37,7 @@ jobs:
         run: pnpm --filter scanprice-frontend build
 
       - name: Update S3 bucket
-        run: aws s3 sync ./scanprice-frontend/dist/ ${{ vars.BUCKET_NAME }} --delete
+        run: aws s3 sync ./packages/frontend/dist/ ${{ vars.BUCKET_NAME }} --delete
 
       - name: Invalidate cloudFront cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"

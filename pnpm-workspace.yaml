@@ -1,2 +1,2 @@
 packages:
-  - scanprice-frontend
+  - 'packages/*'

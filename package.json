@@ -1,9 +1,12 @@
 {
-  "name": "ScanPrice",
+  "name": "scanprice",
   "version": "1.0.0",
   "scripts": {
     "dev": "pnpm -r run dev",
+    "dev:db": "docker compose -f docker/docker-compose.dev.yml up -d",
+    "dev:full": "pnpm dev:db && pnpm dev",
     "build": "pnpm -r run build",
+    "scraper:run": "pnpm --filter scraper start",
     "start": "pnpm -r run start"
   },
   "keywords": [],

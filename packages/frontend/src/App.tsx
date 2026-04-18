@@ -9,6 +9,7 @@ function App() {
           <li className='student'>Claudio Rivas Boza</li>
           <li className='student'>Yeray Ortega Fernández</li>
         </ul>
+        <h2>Curso 25-26</h2>
     </section>
 
   )
