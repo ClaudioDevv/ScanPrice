@@ -82,7 +82,7 @@ ScanPrice/
 ├── .env.example                     # Variables sin valores reales
 ├── .gitignore
 ├── pnpm-workspace.yaml
-└── package.json                     # Scripts raíz del monorepo
+├── package.json                     # Scripts raíz del monorepo
 └── CLAUDE.md
 ```
 
@@ -91,20 +91,69 @@ ScanPrice/
 Single table — no history needed.
 
 ```sql
-CREATE TABLE products (
-id SERIAL PRIMARY KEY,
-barcode VARCHAR(50) UNIQUE NOT NULL,
-name VARCHAR(255) NOT NULL,
-category VARCHAR(100),
-brand VARCHAR(100),
-supermarket VARCHAR(100) NOT NULL,
-price DECIMAL(10, 2) NOT NULL,
-unit VARCHAR(50), -- e.g. "500g", "1L"
-image_url VARCHAR(500),
-created_at TIMESTAMP DEFAULT NOW(),
-updated_at TIMESTAMP DEFAULT NOW()
+CREATE TABLE normalized_names (
+  id    SERIAL PRIMARY KEY,
+  name  VARCHAR(100) NOT NULL UNIQUE
 );
+
+CREATE TABLE products (
+  id SERIAL PRIMARY KEY,
+  ean VARCHAR(50) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  category VARCHAR(100),
+  brand VARCHAR(100),
+  supermarket VARCHAR(100) NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  normalized_name_id INT REFERENCES normalized_names(id),
+  image_url VARCHAR(500),
+  source_id TEXT,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW(),
+  UNIQUE(ean, supermarket)
+);
+
+CREATE TABLE product_suggestions (
+  id SERIAL PRIMARY KEY,
+  ean VARCHAR(50) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  category VARCHAR(100),
+  brand VARCHAR(100),
+  supermarket VARCHAR(100) NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
 ```
+
+## Prompt to normalize name
+Eres un normalizador de productos de supermercado.
+Para cada producto, devuelve SOLO la categoría genérica en 2-4 palabras,
+sin marca, sin gramaje, sin adjetivos de calidad.
+
+Devuelve un JSON array en el mismo orden que la entrada.
+
+Productos:
+1. Pechuga de pollo Hacendado ultracongelada 500g
+2. Leche entera Asturiana 1L
+3. Detergente Ariel Pods 30 unidades
+4. Pechuga de Pollo Dia Corral 450g
+5. Leche semi President 6x1L
+
+Respuesta esperada:
+["pechuga de pollo", "leche entera", "detergente", "pechuga de pollo", "leche semidesnatada"]
+
+## Prompt to new Products
+Estos son los nombres normalizados que ya existen en el sistema, 
+DEBES reutilizarlos si el producto encaja:
+["pechuga de pollo", "leche entera", "leche semidesnatada", "detergente en cápsulas"]
+
+Ahora normaliza estos productos nuevos. Si encajan con uno existente usa 
+exactamente ese string. Si no encaja ninguno, crea uno nuevo con el mismo estilo.
+Devuelve JSON array en el mismo orden.
+
+Productos nuevos:
+1. Filete de pechuga de pollo Mercadona 600g
+2. Agua con gas Fonter 1.5L
 
 ## Core Features
 
