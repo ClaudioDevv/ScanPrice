@@ -1,0 +1,28 @@
+.header {
+  background-color: #1a3a5c;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.header-title {
+  color: white;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.header-logo {
+  height: 40px;
+  width: 40px;
+}
+
+.header-spacer {
+  width: 40px;
+}
