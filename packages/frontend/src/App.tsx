@@ -1,17 +1,24 @@
 import './App.css'
+import Button from './components/button'
+import Header from './components/Header'
 
 function App() {
 
   return (
-    <section className='main'>
-        <h1>App de prácticas de Ingeniería de Sistemas de Información</h1>
-        <h2>Prueba</h2>
-        <ul>
-          <li className='student'>Claudio Rivas Boza</li>
-          <li className='student'>Yeray Ortega Fernández</li>
-        </ul>
-        <h2>Curso 25-26</h2>
-    </section>
+    <>
+      <Header />
+      <section className='main'>
+          <h1>App de prácticas de Ingeniería de Sistemas de Información</h1>
+          <h2>Prueba</h2>
+          <ul>
+            <li className='student'>Claudio Rivas Boza</li>
+            <li className='student'>Yeray Ortega Fernández</li>
+          </ul>
+          <h2>Curso 25-26</h2>
+          <Button text="Escanear producto" />
+          
+      </section>
+    </>
 
   )
 }
