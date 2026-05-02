@@ -1,25 +1,27 @@
 import './App.css'
 import Button from './components/Button/Button'
 import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+import SearchBar from './components/SearchBar/SearchBar'
 
 function App() {
-
   return (
     <>
       <Header />
       <section className='main'>
-          <h1>App de prácticas de Ingeniería de Sistemas de Información</h1>
-          <h2>Prueba</h2>
-          <ul>
-            <li className='student'>Claudio Rivas Boza</li>
-            <li className='student'>Yeray Ortega Fernández</li>
-          </ul>
-          <h2>Curso 25-26</h2>
-          <Button text="Escanear producto" />
-          
+        <img
+          src="/perosnaSonriendo.png"
+          alt="escanea tu producto"
+          style={{ width: '100%', borderRadius: '16px' }}
+        />
+        <SearchBar />
+        <div className='btn-group'>
+          <Button text="Escanear código de barras" />
+          <Button text="Introducir código manual" />
+        </div>
       </section>
+      <Footer />
     </>
-
   )
 }
 
