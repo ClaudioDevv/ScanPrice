@@ -3,6 +3,7 @@ import helmet from 'helmet'
 import { errorHandler } from './middlewares/errorHandler'
 // import cors from 'cors'
 import ProductRouter from './routes/product.routes'
+import SuggestionRouter from './routes/suggestion.routes'
 
 const app = express()
 
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/products', ProductRouter)
+app.use('/api/suggestions', SuggestionRouter)
 
 app.use(errorHandler)
 
