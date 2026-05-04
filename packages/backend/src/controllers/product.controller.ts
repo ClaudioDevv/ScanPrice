@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express'
 import { AppError } from '../utils/AppError'
 import { HttpStatus } from '../constants/httpStatus'
 
-export const getByEan = async (req: Request, res: Response, next: NextFunction) => {
+export const getByEan = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const ean = req.params.ean as string
     const supermarket = req.query.supermarket as string
@@ -23,7 +23,7 @@ export const getByEan = async (req: Request, res: Response, next: NextFunction) 
   }
 }
 
-export const getAlternatives = async (req: Request, res: Response, next: NextFunction) => {
+export const getAlternatives = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const ean = req.params.ean as string
     const supermarket = req.query.supermarket as string
