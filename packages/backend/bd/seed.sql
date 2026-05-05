@@ -1,3 +1,35 @@
+CREATE TABLE normalized_names (
+  id    SERIAL PRIMARY KEY,
+  name  VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE products (
+  id SERIAL PRIMARY KEY,
+  ean VARCHAR(50) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  category VARCHAR(100),
+  brand VARCHAR(100),
+  supermarket VARCHAR(100) NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  normalized_name_id INT REFERENCES normalized_names(id),
+  image_url VARCHAR(500),
+  source_id TEXT,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW(),
+  UNIQUE(ean, supermarket)
+);
+
+CREATE TABLE product_suggestions (
+  id SERIAL PRIMARY KEY,
+  ean VARCHAR(50) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  category VARCHAR(100),
+  brand VARCHAR(100),
+  supermarket VARCHAR(100) NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
 -- Primero los nombres normalizados
 INSERT INTO normalized_names (name) VALUES
 ('pechuga de pollo'),
