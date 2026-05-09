@@ -8,18 +8,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   padding: 16px;
   padding-top: 80px;
   flex: 1;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
 
 }
 
 .main img {
   width: 100%;
-  height: 200px;
+  height: 320px;
   object-fit: cover;
   border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 .main h1 {
@@ -33,23 +37,84 @@
 
 html, body {
   height: 100%;
+  background: #f0f4f8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: #f0f4f8;
 }
 
 .btn-group {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
   width: 100%;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@media (max-width: 600px) {
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .main img {
+    height: 220px;
+  }
+}
+
+.how-it-works {
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.how-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a3a5c;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.steps {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  gap: 6px;
+}
+
+.step-icon {
+  font-size: 28px;
+}
+
+.step h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a3a5c;
+}
+
+.step p {
+  font-size: 12px;
+  color: #7090a8;
+  line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .steps {
+    flex-direction: column;
+  }
 }
