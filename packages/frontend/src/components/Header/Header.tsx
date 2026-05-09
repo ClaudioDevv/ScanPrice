@@ -5,7 +5,7 @@ export default function Header() {
     <header className="header">
       <div className="header-spacer" />
       <h1 className="header-title">ScanPrice</h1>
-      <img src="/favicon.svg" alt="logo" className="header-logo" />
+      <img src="/scanprice_icon.svg" alt="logo" className="header-logo" />
     </header>
   )
 }
