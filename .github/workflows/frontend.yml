@@ -3,6 +3,8 @@ run-name: ${{ github.actor }} is deploying out GitHub Actions 🚀
 on:
   push:
     branches: [ 'main' ]
+    paths:
+        - 'packages/frontend/**'
     
 permissions:
   id-token: write
