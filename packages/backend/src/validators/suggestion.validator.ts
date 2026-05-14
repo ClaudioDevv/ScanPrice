@@ -11,4 +11,10 @@ export const createSuggestionSchema = z.object({
   })
 })
 
+export const approveSchema = z.object({
+  params: z.object({
+    id: z.string().regex(/^\d+$/, 'El id debe ser un número')
+  })
+})
+
 export type CreateSuggestionInput = z.infer<typeof createSuggestionSchema>['body']
