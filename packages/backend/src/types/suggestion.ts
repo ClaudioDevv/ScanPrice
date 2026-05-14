@@ -9,4 +9,4 @@ export interface Suggestion {
   created_at: Date
 }
 
-export type CreateSuggestionInput = Omit<Suggestion, 'id' | 'created_at'>
+export type SuggestionInput = Omit<Suggestion, 'id' | 'created_at'>
