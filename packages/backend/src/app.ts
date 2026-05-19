@@ -1,7 +1,7 @@
 import express from 'express'
 import helmet from 'helmet'
 import { errorHandler } from './middlewares/errorHandler'
-// import cors from 'cors'
+import cors from 'cors'
 import ProductRouter from './routes/product.routes'
 import SuggestionRouter from './routes/suggestion.routes'
 
@@ -9,7 +9,7 @@ const app = express()
 
 app.use(helmet())
 app.disable('x-powered-by')
-
+app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => {
