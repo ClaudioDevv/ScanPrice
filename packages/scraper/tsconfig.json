@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    // Layout
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    // Target
+    "target": "ES2022",
+    "module": "commonjs",
+
+    // Interop
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // Robustez
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "isolatedModules": true,
+
+    // Otros
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "moduleDetection": "force"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
