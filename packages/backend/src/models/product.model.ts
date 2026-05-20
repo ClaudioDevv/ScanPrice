@@ -42,8 +42,8 @@ export const createProductSuggestion = async ({ suggestion, client }: { suggesti
   let result
   try {
     result = await client.query(`
-      INSERT INTO products(ean, name, category, brand, supermarket, price) 
-      VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`
+      INSERT INTO products(ean, name, category, brand, supermarket, price, source_id) 
+      VALUES ($1, $2, $3, $4, $5, $6, 'Sugerencia') RETURNING *`
     , [suggestion.ean, suggestion.name, suggestion.category, suggestion.brand, suggestion.supermarket, suggestion.price])
   } catch (error) {
     console.error(`Error en la BD: ${error}`)
