@@ -1,4 +1,4 @@
-import { OFFPriceItem, OFFResponse, ProductRow } from '../types/open-price-api'
+import { OFFPriceItem, OFFResponse, ProductRow } from '../types/open-price-api.types'
 import { fetchJson, log, sleep } from '../utils/utils'
 
 export const LOCATION_ID = 4455        // Supeco Barcelona
