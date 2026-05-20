@@ -16,9 +16,29 @@ export async function fetchJson<T> (url: string): Promise<T | null> {
       log(`HTTP ${res.status} → ${url}`)
       return null
     }
-    return (await res.json()) as T
+    const data = await res.json()
+    return data
   } catch (err) {
-    log(`Error: ${err}`)
+    log(`Error fetching ${url}: ${err}`)
     return null
   }
+}
+
+export async function runWithConcurrency<T> (tasks: (() => Promise<T>)[], concurrency: number): Promise<T[]> {
+  const results: T[] = []
+  let index = 0
+
+  async function worker () {
+    while (index < tasks.length) {
+      const current = index++
+      const task = tasks[current]
+
+      if (task) {
+        results[current] = await task()
+      }
+    }
+  }
+
+  await Promise.all(Array.from({ length: concurrency }, worker))
+  return results
 }

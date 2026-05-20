@@ -1,5 +1,5 @@
 import { pool } from './pg'
-import { log } from '../scrapers/mercadona.scraper'
+import { log } from '../utils/utils'
 import { ProductDetail } from '../types/mercadona.types'
 
 const UPSERT_SQL = `
