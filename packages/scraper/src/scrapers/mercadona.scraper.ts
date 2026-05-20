@@ -1,3 +1,11 @@
+import { ProductBasic, ProductDetail, Subcategory } from '../types/mercadona.types'
+import { fetchJson, log } from '../utils/utils'
+
+const BASE_URL = 'https://tienda.mercadona.es/api'
+
+// Supercategorías a excluir (no alimentarias)
+const EXCLUDED_SUPER_IDS = new Set([20, 21, 22, 23, 24, 26, 25])
+
 /**
  * Mercadona Scraper
  * Flujo:
@@ -6,64 +14,6 @@
  *   3. GET /api/products/{prod_id}   → EAN + detalles (solo productos nuevos)
  *   4. Upsert en PostgreSQL
  */
-
-import { ProductBasic, ProductDetail, Subcategory } from '../types/mercadona.types'
-
-const BASE_URL = 'https://tienda.mercadona.es/api'
-const HEADERS = {
-  'User-Agent': 'Mozilla/5.0 (compatible; scraper/1.0)',
-  Accept: 'application/json',
-}
-
-// Supercategorías a excluir (no alimentarias)
-const EXCLUDED_SUPER_IDS = new Set([20, 21, 22, 23, 24, 26, 25])
-
-// #########################
-// Funciones Auxiliares
-// #########################
-
-export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
-
-export function log (msg: string) {
-  console.log(`[${new Date().toTimeString().slice(0, 8)}] ${msg}`)
-}
-
-async function fetchJson<T> (url: string): Promise<T | null> {
-  try {
-    const res = await fetch(url, { headers: HEADERS })
-    if (!res.ok) {
-      log(`HTTP ${res.status} → ${url}`)
-      return null
-    }
-    const data = await res.json()
-    return data
-  } catch (err) {
-    log(`Error fetching ${url}: ${err}`)
-    return null
-  }
-}
-
-/** Limita la concurrencia de un array de promesas */
-export async function runWithConcurrency<T> (tasks: (() => Promise<T>)[], concurrency: number): Promise<T[]> {
-  const results: T[] = []
-  let index = 0
-
-  async function worker () {
-    while (index < tasks.length) {
-      const current = index++
-      const task = tasks[current]
-
-      if (task) {
-        results[current] = await task()
-      }
-    }
-  }
-
-  await Promise.all(Array.from({ length: concurrency }, worker))
-  return results
-}
-
-// ─── API ──────────────────────────────────────────────────────────────────────
 
 export async function getAllSubcategoryIds (): Promise<Subcategory[]> {
   const data = await fetchJson<{ results: any[] }>(`${BASE_URL}/categories/`)

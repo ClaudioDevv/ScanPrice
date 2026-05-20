@@ -1,4 +1,5 @@
-import { getAllSubcategoryIds, getProductDetail, getProductsFromSubcat, log, runWithConcurrency, sleep } from '../scrapers/mercadona.scraper'
+import { getAllSubcategoryIds, getProductDetail, getProductsFromSubcat } from '../scrapers/mercadona.scraper'
+import { log, runWithConcurrency, sleep } from '../utils/utils'
 import { loadKnownSourceIds, upsertProducts } from '../db/mercadona.repository'
 import { ProductBasic, ProductDetail } from '../types/mercadona.types'
 

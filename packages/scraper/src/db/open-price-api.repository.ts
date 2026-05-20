@@ -1,5 +1,5 @@
 import { SUPERMARKET_NAME } from '../scrapers/open-price-api'
-import { ProductRow } from '../types/open-price-api'
+import { ProductRow } from '../types/open-price-api.types'
 import { pool } from './pg'
 
 const UPSERT_SQL = `
