@@ -1,18 +1,18 @@
 import { pool } from './db/pg'
-import { log } from './scrapers/mercadona.scraper'
-import { runMercadonaScraper } from './services/mercadona.service'
-// import { runOpenFoodFactsScraper } from './services/openfoodfacts.service'
+import { log } from './utils/utils'
+// import { runMercadonaScraper } from './services/mercadona.service'
+import { runOpenPriceApi } from './services/open-price-api.service'
 
 async function main () {
+  // try {
+  //   await runMercadonaScraper()
+  // } catch (err) {
+  //   log(`Mercadona falló: ${err}`)
+  // }
   try {
-    await runMercadonaScraper()
+    await runOpenPriceApi()
   } catch (err) {
-    log(`Mercadona falló: ${err}`)
-  }
-  try {
-    // await runOpenFoodFactsScraper()
-  } catch (err) {
-    log('OpenFoodFacts falló, continuando...')
+    log(`OpenPrice falló: ${err}`)
   }
 }
 
