@@ -3,9 +3,9 @@ import { log, runWithConcurrency, sleep } from '../utils/utils'
 import { loadKnownSourceIds, upsertProducts } from '../db/mercadona.repository'
 import { ProductBasic, ProductDetail } from '../types/mercadona.types'
 
-const CONCURRENCY = 8    // peticiones simultáneas a /api/products/{id}
-const BATCH_DELAY = 150  // ms entre lotes
-const BATCH_SIZE = 50    // productos por lote
+const CONCURRENCY = 2    // peticiones simultáneas a /api/products/{id}
+const BATCH_DELAY = 2000  // ms entre lotes
+const BATCH_SIZE = 30    // productos por lote
 
 export async function runMercadonaScraper (): Promise<void> {
   log('=== Mercadona Scraper iniciado ===')
@@ -39,7 +39,7 @@ export async function runMercadonaScraper (): Promise<void> {
   // ── Paso 3: EAN para productos nuevos ─────────────────────────────────────
   const newProducts = [...allProductsMap.values()].filter(
     (p) => !knownIds.has(p.productId)
-  ).slice(0, 20) // PRUEBA 20 PRODUCTS
+  )
   log(`Productos nuevos (necesitan EAN): ${newProducts.length}`)
 
   let totalInserted = 0
