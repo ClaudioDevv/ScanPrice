@@ -1,5 +1,5 @@
 import { ProductBasic, ProductDetail, Subcategory } from '../types/mercadona.types'
-import { fetchJson, log } from '../utils/utils'
+import { fetchJson, log, sleep } from '../utils/utils'
 
 const BASE_URL = 'https://tienda.mercadona.es/api'
 
@@ -64,6 +64,7 @@ export async function getProductsFromSubcat (subcat: Subcategory): Promise<Produ
 }
 
 export async function getProductDetail (product: ProductBasic): Promise<ProductDetail | null> {
+  await sleep(Math.random() * 800 + 200)
   const data = await fetchJson<any>(`${BASE_URL}/products/${product.productId}`)
   if (!data) return null
 

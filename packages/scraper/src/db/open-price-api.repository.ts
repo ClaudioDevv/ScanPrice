@@ -10,7 +10,6 @@ const UPSERT_SQL = `
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW(), NOW())
   ON CONFLICT (ean, supermarket)
   DO UPDATE SET
-    name       = EXCLUDED.name,
     price      = EXCLUDED.price,
     image_url  = COALESCE(NULLIF(EXCLUDED.image_url, ''), products.image_url),
     category   = COALESCE(NULLIF(EXCLUDED.category, ''), products.category),

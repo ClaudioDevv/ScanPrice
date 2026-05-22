@@ -1,6 +1,10 @@
 const HEADERS = {
-  'User-Agent': 'Mozilla/5.0 (compatible; scraper/1.0)',
-  Accept: 'application/json',
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+  Accept: 'application/json, text/plain, */*',
+  'Accept-Language': 'es-ES,es;q=0.9',
+  'Accept-Encoding': 'gzip, deflate, br',
+  Referer: 'https://tienda.mercadona.es/',
+  Origin: 'https://tienda.mercadona.es',
 }
 
 export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))

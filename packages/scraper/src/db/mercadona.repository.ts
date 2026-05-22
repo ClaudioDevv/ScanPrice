@@ -7,14 +7,10 @@ const UPSERT_SQL = `
     ean, name, category, brand, supermarket,
     price, image_url, source_id, created_at, updated_at
   )
-  VALUES ($1, $2, $3, $4, 'Mercadona', $5, $6, $7, NOW(), NOW())
+  VALUES ($1, $2, $3, $4, 'mercadona', $5, $6, $7, NOW(), NOW())
   ON CONFLICT (ean, supermarket)
   DO UPDATE SET
-    name       = EXCLUDED.name,
     price      = EXCLUDED.price,
-    image_url  = EXCLUDED.image_url,
-    category   = EXCLUDED.category,
-    brand      = EXCLUDED.brand,
     updated_at = NOW()
 `
 
@@ -50,7 +46,7 @@ export async function upsertProducts (products: ProductDetail[]): Promise<number
 
 export async function loadKnownSourceIds (): Promise<Map<string, string>> {
   const res = await pool.query<{ source_id: string; ean: string }>(
-    "SELECT source_id, ean FROM products WHERE supermarket = 'Mercadona'"
+    "SELECT source_id, ean FROM products WHERE supermarket = 'mercadona'"
   )
   return new Map(res.rows.map((r) => [String(r.source_id), r.ean]))
 }
