@@ -5,8 +5,10 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import SearchBar from './components/SearchBar/SearchBar'
 import Carousel from './components/Carousel/Carousel'
+import Scanner from './components/Scanner/Scanner'
 
 export default function App() {
+  const [showScanner, setShowScanner] = useState(false)
   const [showManualModal, setShowManualModal] = useState(false)
   const [ean, setEan] = useState('')
   const [supermarket, setSupermarket] = useState('')
@@ -27,8 +29,8 @@ export default function App() {
         body: JSON.stringify({
           ean: ean,
           name: suggestForm.name,
-          brand: suggestForm.brand || null,
-          category: suggestForm.category || null,
+          brand: suggestForm.brand || '',
+          category: suggestForm.category || '',
           price: parseFloat(suggestForm.price),
           supermarket: suggestForm.supermarket
         })
@@ -101,9 +103,19 @@ export default function App() {
               </div>
             </div>
             <div className='btn-group'>
-              <Button text="Escanear código de barras" />
+              <Button text="Escanear código de barras" onClick={() => setShowScanner(true)} />
               <Button text="Introducir código manual" onClick={() => setShowManualModal(true)} />
             </div>
+            {showScanner && (
+              <Scanner
+                onScan={(eanCode) => {
+                  setEan(eanCode)
+                  setShowScanner(false)
+                  setShowManualModal(true)
+                }}
+                onClose={() => setShowScanner(false)}
+              />
+            )}
           </>
         )}
 
