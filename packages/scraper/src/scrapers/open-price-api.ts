@@ -2,7 +2,7 @@ import { OFFPriceItem, OFFResponse, ProductRow } from '../types/open-price-api.t
 import { fetchJson, log, sleep } from '../utils/utils'
 
 export const LOCATION_ID = 4455        // Supeco Barcelona
-export const SUPERMARKET_NAME = 'Supeco'
+export const SUPERMARKET_NAME = 'supeco'
 const PAGE_SIZE = 100
 const PAGE_DELAY = 300          // ms entre páginas (API pública)
 const BASE_URL = 'https://prices.openfoodfacts.org/api/v1'

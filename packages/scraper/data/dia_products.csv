@@ -456,7 +456,6 @@ product_id,product_name,group,subgroup,brand,price,currency,discount_percentage,
 43870,Refresco sin gas de limón Upss lata 33 cl,agua refrescos y zumos,limon lima limon,Upss,0.49,EUR,0,14-11-2023
 284287,Refresco de limón zero Schweppes lata 33 cl,agua refrescos y zumos,limon lima limon,Schweppes,0.89,EUR,0,14-11-2023
 10585,Refresco en polvo sabor limón Tang bolsa 30 g,agua refrescos y zumos,limon lima limon,Tang,0.83,EUR,0,14-11-2023
-272818,Refresco de lima limón zero Seven up lata 33 cl,agua refrescos y zumos,limon lima limon,Seven up,0.55,EUR,0,14-11-2023
 ,,agua refrescos y zumos,limon lima limon,,,,,14-11-2023
 265825,Vino blue frizzante 7º Condominium botella 75 cl,cervezas vinos y bebidas con alcohol,vino espumoso,Condominium,2.49,EUR,0,14-11-2023
 265826,Vino blanco frizzante 5º Condominium botella 75 cl,cervezas vinos y bebidas con alcohol,vino espumoso,Condominium,2.49,EUR,0,14-11-2023
@@ -2049,10 +2048,8 @@ product_id,product_name,group,subgroup,brand,price,currency,discount_percentage,
 47702,Desodorante cobalt blue Rexona spray 200 ml,perfumeria higiene salud,desodorantes,Rexona,2.7,EUR,0,14-11-2023
 274501,Desodorante con extracto de rosa mosqueta Imaqe spray 200 ml,perfumeria higiene salud,desodorantes,Imaqe,1.95,EUR,0,14-11-2023
 151874,Desodorante roll-on sensitive Byly bote 50 ml,perfumeria higiene salud,desodorantes,Byly,1.7,EUR,0,14-11-2023
-274536,Desodorante roll-on invisible & antimanchas Imaqe bote 50 ml,perfumeria higiene salud,desodorantes,Imaqe,0.85,EUR,0,14-11-2023
 152362,Desodorante invisible on black + white Rexona spray 200 ml,perfumeria higiene salud,desodorantes,Rexona,2.7,EUR,0,14-11-2023
 293785,Desodorante roll-on advanced care original Dove bote 50 ml,perfumeria higiene salud,desodorantes,Dove,2.49,EUR,0,14-11-2023
-274504,Desodorante black and white Imaqe spray 200 ml,perfumeria higiene salud,desodorantes,Imaqe,1.95,EUR,0,14-11-2023
 288479,Desodorante roll-on dermo extra control duplo Sanex bote 100 ml,perfumeria higiene salud,desodorantes,Sanex,3.99,EUR,0,14-11-2023
 107597,Desodorante invisible ice fresh Rexona spray 200 ml,perfumeria higiene salud,desodorantes,Rexona,2.7,EUR,0,14-11-2023
 295804,Desodorante advanced care original Dove spray 200 ml,perfumeria higiene salud,desodorantes,Dove,3.99,EUR,0,14-11-2023
@@ -2136,7 +2133,6 @@ product_id,product_name,group,subgroup,brand,price,currency,discount_percentage,
 250604,Gel de ducha hidrotermal con sales minerales La toja botella 550 ml,perfumeria higiene salud,gel de ducha y esponjas,La toja,2.7,EUR,0,14-11-2023
 88539,Gel íntimo aloe vera Carefree tubo 200 ml,perfumeria higiene salud,gel de ducha y esponjas,Carefree,3.6,EUR,0,14-11-2023
 296716,Gel de ducha zen moment Natural honey botella 600 ml,perfumeria higiene salud,gel de ducha y esponjas,Natural honey,2.45,EUR,0,14-11-2023
-296353,Gel de ducha zen moment Natural honey botella 600 ml,perfumeria higiene salud,gel de ducha y esponjas,Natural honey,2.45,EUR,0,14-11-2023
 ,,perfumeria higiene salud,gel de ducha y esponjas,,,,,14-11-2023
 22954,Toallitas para bebés BabySmile bolsa 80 unidades,bebe,panales y toallitas,BabySmile,1.05,EUR,0,14-11-2023
 268409,Pañales 13-20 kgs talla 5 Planeta Bebé bolsa 80 unidades,bebe,panales y toallitas,Planeta Bebé,15.2,EUR,0,14-11-2023
