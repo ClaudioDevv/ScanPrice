@@ -9,6 +9,7 @@ dotenv.config()
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!)
 const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' })
 
+const MAX_BATCHES = 20
 const BATCH_SIZE = 200
 const DELAY_MS = 2000
 
@@ -150,8 +151,9 @@ async function main () {
   let totalUpdated = 0
   let totalErrors = 0
   const batches = Math.ceil(products.length / BATCH_SIZE)
+  const batchesToProcess = Math.min(BATCH_SIZE * MAX_BATCHES, products.length)
 
-  for (let i = 0; i < products.length; i += BATCH_SIZE) {
+  for (let i = 0; i < batchesToProcess; i += BATCH_SIZE) {
     const batch = products.slice(i, i + BATCH_SIZE)
     const ids = batch.map((p) => p.id)
     const names = batch.map((p) => p.name)
