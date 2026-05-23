@@ -24,11 +24,13 @@ export const getByEan = async ({ ean, supermarket }: { ean: string, supermarket:
 export const getAlternatives = async ({ ean, supermarket }: { ean: string, supermarket: string }): Promise<Product[]> => {
   try {
     const result = await pool.query(`
-      SELECT p2.id, p2.name, p2.category, p2.brand, p2.supermarket, p2.price, p2.image_url 
+      SELECT DISTINCT ON (p2.supermarket)
+        p2.id, p2.name, p2.category, p2.brand, p2.supermarket, p2.price, p2.image_url 
       FROM products p1
       JOIN products p2 ON p1.normalized_name_id = p2.normalized_name_id
       WHERE p1.ean = $1 
-      AND p2.supermarket != $2`
+      AND p2.supermarket != $2
+      ORDER BY p2.supermarket, p2.price ASC`
     , [ean, supermarket])
 
     return result.rows
