@@ -1,0 +1,21 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.input-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a3a5c;
+}
+
+.input-group input, .input-group select {
+  padding: 10px 14px;
+  border: 1px solid #d0dde8;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
