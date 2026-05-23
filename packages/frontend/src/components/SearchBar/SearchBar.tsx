@@ -13,8 +13,8 @@ export default function SearchBar() {
       <p className="supermarkets-title">Supermercados disponibles</p>
       <div className="supermarkets">
         <span className="chip">Mercadona</span>
-        <span className="chip">Dia</span>
-        <span className=" chip">Lidl</span>
+        <span className="chip">Día</span>
+        <span className=" chip">Supeco</span>
       </div>
     </div>
   )

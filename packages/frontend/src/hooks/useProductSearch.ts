@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { getProduct, getAlternatives } from '../services/productService'
+import type { Product } from '../types/product'
 
 export function useProductSearch() {
   const [ean, setEan] = useState('')
   const [supermarket, setSupermarket] = useState('')
-  const [product, setProduct] = useState<any>(null)
-  const [alternatives, setAlternatives] = useState<any[]>([])
+  const [product, setProduct] = useState<Product | null>(null)
+  const [alternatives, setAlternatives] = useState<Product[]>([])
   const [notFound, setNotFound] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -20,13 +21,12 @@ export function useProductSearch() {
 
       if (data.success && data.data) {
         setProduct(data.data)
-        const altRes = await fetch(`http://localhost:3000/api/products/${eanCode}/alternatives?supermarket=${supermarketName}`)
-        const altData = await altRes.json()
+        const altData = await getAlternatives(eanCode, supermarketName)
         if (altData.success) setAlternatives(altData.data)
       } else {
         setNotFound(true)
       }
-    } catch (e) {
+    } catch {
       setNotFound(true)
     } finally {
       setLoading(false)
