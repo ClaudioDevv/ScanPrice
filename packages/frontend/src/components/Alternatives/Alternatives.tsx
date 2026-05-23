@@ -1,7 +1,9 @@
+import type { Product } from '../../types/product'
+import { capitalize } from '../../utils/helper'
 import './Alternatives.css'
 
 interface AlternativesProps {
-  alternatives: any[]
+  alternatives: Product[]
 }
 
 export default function Alternatives({ alternatives }: AlternativesProps) {
@@ -13,7 +15,7 @@ export default function Alternatives({ alternatives }: AlternativesProps) {
       {alternatives.map((alt, i) => (
         <div key={i} className="alternative-card">
           <p>{alt.name}</p>
-          <p>{alt.price}€ — {alt.supermarket}</p>
+          <p>{alt.price}€ — {capitalize(alt.supermarket)}</p>
         </div>
       ))}
     </div>

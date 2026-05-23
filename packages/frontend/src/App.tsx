@@ -50,7 +50,7 @@ export default function App() {
 
         <Alternatives alternatives={alternatives} />
 
-        {notFound && (
+        {notFound && !suggestSuccess && (
           <div className="not-found">
             <p>Producto no encontrado</p>
             <Button text="Añadir producto" onClick={() => setShowSuggestModal(true)} />

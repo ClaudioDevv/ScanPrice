@@ -179,9 +179,9 @@ html, body {
 }
 
 .success-message p {
-  font-size: 16px;
+  font-size: 20px;
   color: #1a3a5c;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .input-group {
