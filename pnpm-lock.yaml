@@ -59,15 +59,15 @@ importers:
 
   packages/frontend:
     dependencies:
-      '@zxing/library':
-        specifier: ^0.23.0
-        version: 0.23.0
       react:
         specifier: ^19.2.4
         version: 19.2.5
       react-dom:
         specifier: ^19.2.4
         version: 19.2.5(react@19.2.5)
+      react-zxing:
+        specifier: ^2.1.0
+        version: 2.1.0(react@19.2.5)
     devDependencies:
       '@babel/core':
         specifier: ^7.29.0
@@ -603,9 +603,9 @@ packages:
       babel-plugin-react-compiler:
         optional: true
 
-  '@zxing/library@0.23.0':
-    resolution: {integrity: sha512-6fkkoFwP8CHxl6ugnPsj74PLJgX2iRv5zczGAyt5OBzQgxFhuhF0NCEc4t4OvSr8xAv2MRLlI0Iu9ZGDZQ2urA==}
-    engines: {node: '>= 24.0.0'}
+  '@zxing/library@0.20.0':
+    resolution: {integrity: sha512-6Ev6rcqVjMakZFIDvbUf0dtpPGeZMTfyxYg4HkVWioWeN7cRcnUWT3bU6sdohc82O1nPXcjq6WiGfXX2Pnit6A==}
+    engines: {node: '>= 10.4.0'}
 
   '@zxing/text-encoding@0.9.0':
     resolution: {integrity: sha512-U/4aVJ2mxI0aDNI8Uq0wEhMgY+u4CNtEb0om3+y3+niDAsoTCOB33UF0sxpzqzdqXLqmvc+vZyAt4O8pPdfkwA==}
@@ -1719,6 +1719,12 @@ packages:
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
+  react-zxing@2.1.0:
+    resolution: {integrity: sha512-iFZ8KPfZl+biiT5/bluuMGaSLQAwnE0ialQHbJioHFuwqhCo1WmjQmAtI4WN8BmiKYFVkHGgwHSl+pgwpwtQEg==}
+    engines: {node: ^18 || ^20 || ^22, yarn: ^1.22}
+    peerDependencies:
+      react: ^16.8.0  || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   react@19.2.5:
     resolution: {integrity: sha512-llUJLzz1zTUBrskt2pwZgLq59AemifIftw4aB7JxOqf1HY2FDaGDxgwpAPVzHU1kdWabH7FauP4i1oEeer2WCA==}
     engines: {node: '>=0.10.0'}
@@ -2603,7 +2609,7 @@ snapshots:
       '@rolldown/plugin-babel': 0.2.3(@babel/core@7.29.0)(rolldown@1.0.0-rc.15)(vite@8.0.8(@types/node@24.12.2))
       babel-plugin-react-compiler: 1.0.0
 
-  '@zxing/library@0.23.0':
+  '@zxing/library@0.20.0':
     dependencies:
       ts-custom-error: 3.3.1
     optionalDependencies:
@@ -3854,6 +3860,11 @@ snapshots:
       scheduler: 0.27.0
 
   react-is@16.13.1: {}
+
+  react-zxing@2.1.0(react@19.2.5):
+    dependencies:
+      '@zxing/library': 0.20.0
+      react: 19.2.5
 
   react@19.2.5: {}
 
