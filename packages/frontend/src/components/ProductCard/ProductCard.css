@@ -1,0 +1,14 @@
+.product-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.product-card h2 { font-size: 18px; color: #1a3a5c; }
+.product-price { font-size: 24px; font-weight: 700; color: #1a3a5c; }
+.product-brand, .product-category, .product-supermarket { font-size: 13px; color: #7090a8; }
