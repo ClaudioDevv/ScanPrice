@@ -1,15 +1,15 @@
 import { pool } from './db/pg'
 import { log } from './utils/utils'
-// import { runMercadonaScraper } from './services/mercadona.service'
+import { runMercadonaScraper } from './services/mercadona.service'
 import { runOpenPriceApi } from './services/open-price-api.service'
 import { runDiaScraper } from './services/dia.service'
 
 async function main () {
-  // try {
-  //   await runMercadonaScraper()
-  // } catch (err) {
-  //   log(`Mercadona falló: ${err}`)
-  // }
+  try {
+    await runMercadonaScraper()
+  } catch (err) {
+    log(`Mercadona falló: ${err}`)
+  }
 
   try {
     await runOpenPriceApi()

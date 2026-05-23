@@ -9,7 +9,10 @@ const app = express()
 
 app.use(helmet())
 app.disable('x-powered-by')
-app.use(cors())
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' ? process.env.CORS_ORIGIN : 'http://localhost:5173',
+  methods: ['GET', 'POST'],
+}))
 app.use(express.json())
 
 app.get('/', (req, res) => {
