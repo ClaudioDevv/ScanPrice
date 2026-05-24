@@ -22,6 +22,10 @@ app.get('/', (req, res) => {
 app.use('/api/products', ProductRouter)
 app.use('/api/suggestions', SuggestionRouter)
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'UP', timestamp: new Date() })
+})
+
 app.use(errorHandler)
 
 export default app
