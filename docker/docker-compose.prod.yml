@@ -1,7 +1,21 @@
 services:
   backend:
-    build: ./packages/backend
+    container_name: scanprice-backend
+    build:
+      context: ..
+      dockerfile: packages/backend/Dockerfile
+
     ports:
       - "3000:3000"
-    env_file: .env
+
+    env_file:
+      - ../packages/backend/.env
+
     restart: unless-stopped
+
+    # Protección contra llenado de disco
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m" # Rota el log cuando llega a 10MB
+        max-file: "3"   # Guarda un máximo de 3 archivos
