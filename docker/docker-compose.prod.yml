@@ -5,10 +5,3 @@ services:
       - "3000:3000"
     env_file: .env
     restart: unless-stopped
-
-  scraper:
-    build: ./packages/scraper
-    env_file: .env
-    # No expone puertos, solo escribe en BD
-    # En prod lo ideal es NO tener cron aquí y usar EventBridge
-    profiles: ["manual"]   # Solo se lanza cuando EventBridge lo invoca
