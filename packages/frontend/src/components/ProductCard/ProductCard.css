@@ -9,6 +9,29 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
+.product-info {
+  display: flex;
+  gap:10px;
+}
+
+.product-information {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
+.product-image {
+  max-width: 250px;
+  max-height: 250px;
+}
+
 .product-card h2 { font-size: 18px; color: #1a3a5c; }
 .product-price { font-size: 24px; font-weight: 700; color: #1a3a5c; }
 .product-brand, .product-category, .product-supermarket { font-size: 13px; color: #7090a8; }
+
+@media (max-width: 600px) {
+  .product-info {
+    flex-direction: column;
+  }
+}
