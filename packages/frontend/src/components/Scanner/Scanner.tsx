@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import Quagga from '@ericblade/quagga2'
 import './Scanner.css'
+import { isValidEAN } from '../../utils/helper'
 
 interface ScannerProps {
   onScan: (ean: string) => void
@@ -25,7 +26,7 @@ export default function Scanner({ onScan, onClose }: ScannerProps) {
       
       const avgError = errors.reduce((a: number, b: number) => a + b, 0) / errors.length
 
-      if (avgError < 0.15 && !hasScanned.current) {
+      if (avgError < 0.12 && !hasScanned.current && isValidEAN(code)) {
         hasScanned.current = true
         onScan(code)
       }
