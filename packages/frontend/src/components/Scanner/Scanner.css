@@ -15,6 +15,8 @@
   padding: 24px;
   width: 90%;
   max-width: 400px;
+  max-height: 90vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,6 +32,21 @@
 .scanner-video {
   width: 100%;
   border-radius: 10px;
+  overflow: hidden;
+}
+
+.scanner-video video,
+.scanner-video canvas {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 260px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+.scanner-video canvas {
+  display: none !important;
 }
 
 .scanner-error {
