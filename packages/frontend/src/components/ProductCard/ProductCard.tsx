@@ -11,11 +11,24 @@ interface ProductCardProps {
 export default function ProductCard({ product, onBack }: ProductCardProps) {
   return (
     <div className="product-card">
-      <h2>{product.name}</h2>
-      <p className="product-brand">{product.brand}</p>
-      <p className="product-category">{product.category}</p>
-      <p className="product-price">{product.price}€</p>
-      <p className="product-supermarket">{capitalize(product.supermarket)}</p>
+      <div className='product-info'>
+        <div className='product-information'>
+          <h2>{product.name}</h2>
+          <p className="product-brand">{product.brand}</p>
+          <p className="product-category">{product.category}</p>
+          <p className="product-price">{product.price}€</p>
+          <p className="product-supermarket">{capitalize(product.supermarket)}</p>
+        </div>
+        {product.image_url && (
+          <div className="product-image-wrapper">
+            <img
+              src={product.image_url}
+              alt={product.name}
+              className="product-image"
+            />
+          </div>
+        )}
+      </div>
       <Button text="Volver" onClick={onBack} />
     </div>
   )
