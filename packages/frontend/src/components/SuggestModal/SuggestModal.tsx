@@ -55,7 +55,7 @@ export default function SuggestModal({ ean, onSuccess, onClose }: SuggestModalPr
             <option value="">Selecciona supermercado</option>
             <option value="mercadona">Mercadona</option>
             <option value="dia">Dia</option>
-            <option value="lidl">Supeco</option>
+            <option value="supeco">Supeco</option>
           </select>
         </div>
         <div className="modal-buttons">
