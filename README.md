@@ -10,12 +10,10 @@ Proyecto nacido como Trabajo Final de Ingeniería de Sistemas de Información, e
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-EC2%20%7C%20S3%20%7C%20RDS%20%7C%20CloudFront-FF9900?logo=amazonaws&logoColor=white)
 
-<!-- Añadir video demo -->
-
 
 https://github.com/user-attachments/assets/1b7dc17b-211b-45d1-aac1-cb2a5c1146e2
 
-
+> ⚠️ **Estado del despliegue**: la aplicación estuvo desplegada y en funcionamiento en AWS con la arquitectura completa durante el desarrollo del proyecto. Al ser un proyecto sin presupuesto para mantener infraestructura de pago de forma indefinida, la infra se ha dado de baja tras la entrega. Todo el código, configuración y documentación del despliegue siguen disponibles en este repositorio, y el vídeo de demo muestra la app funcionando en producción.
 ---
 
 ## Índice
