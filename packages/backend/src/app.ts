@@ -16,7 +16,7 @@ app.use(cors({
 app.use(express.json())
 
 app.get('/', (req, res) => {
-  res.status(200).send('<h1>API funcionando correctamente</h1>')
+  res.status(200).send('<h1>API funcionando</h1>')
 })
 
 app.use('/api/products', ProductRouter)
