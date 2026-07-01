@@ -1,0 +1,94 @@
+name: Deploy backend to EC2
+run-name: ${{ github.actor }} is deploying backend 🚀
+
+on:
+  push:
+    branches: [ 'main' ]
+    paths:
+      - 'packages/backend/**'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    name: Build and Push image
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.push-image.outputs.image }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6 # Ya está la versión v6 disponible
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: eu-south-2
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build, tag, and push docker image to Amazon ECR
+        id: push-image
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: scanprice-backend
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          IMAGE="$REGISTRY/$REPOSITORY:$IMAGE_TAG"
+
+          docker build \
+            -f packages/backend/Dockerfile \
+            -t "$IMAGE" \
+            -t "$REGISTRY/$REPOSITORY:latest" \
+            .
+          
+          docker push "$IMAGE"
+          docker push "$REGISTRY/$REPOSITORY:latest"
+
+          # Pasamos la imagen al job deploy como output
+          echo "image=$IMAGE" >> $GITHUB_OUTPUT
+
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Copy compose file to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ vars.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: docker/docker-compose.prod.yml
+          target: ~/
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ vars.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            # EC2 se autentica con ECR usando su propio Instance Profile (sin secrets)
+            aws ecr get-login-password --region eu-south-2 | \
+              docker login --username AWS --password-stdin \
+              ${{ vars.ECR_NAME }}
+
+            # Pull explícito antes del up, más claro y permite ver si falla el pull
+            docker pull ${{ needs.build.outputs.image }}
+
+            # Compose usa BACKEND_IMAGE para saber qué imagen levantar
+            BACKEND_IMAGE=${{ needs.build.outputs.image }} \
+              docker compose -f ~/docker/docker-compose.prod.yml up -d
+
+            # Limpiamos imágenes antiguas para no llenar el disco
+            docker image prune -f
