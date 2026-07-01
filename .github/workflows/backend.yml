@@ -6,6 +6,7 @@ on:
     branches: [ 'main' ]
     paths:
       - 'packages/backend/**'
+      - 'docker/docker-compose.prod.yml'
 
 permissions:
   id-token: write
@@ -20,7 +21,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6 # Ya está la versión v6 disponible
+        uses: actions/checkout@v6
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6
@@ -78,17 +79,17 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # EC2 se autentica con ECR usando su propio Instance Profile (sin secrets)
+            # EC2 se autentica con ECR usando su propio Instance Profile
             aws ecr get-login-password --region eu-south-2 | \
               docker login --username AWS --password-stdin \
               ${{ vars.ECR_NAME }}
 
-            # Pull explícito antes del up, más claro y permite ver si falla el pull
+            # Permite ver si falla el pull
             docker pull ${{ needs.build.outputs.image }}
 
             # Compose usa BACKEND_IMAGE para saber qué imagen levantar
             BACKEND_IMAGE=${{ needs.build.outputs.image }} \
               docker compose -f ~/docker/docker-compose.prod.yml up -d
 
-            # Limpiamos imágenes antiguas para no llenar el disco
+            # Limpiamos
             docker image prune -f
