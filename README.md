@@ -12,6 +12,10 @@ Proyecto nacido como Trabajo Final de Ingeniería de Sistemas de Información, e
 
 <!-- Añadir video demo -->
 
+
+https://github.com/user-attachments/assets/1b7dc17b-211b-45d1-aac1-cb2a5c1146e2
+
+
 ---
 
 ## Índice
@@ -35,9 +39,10 @@ Proyecto nacido como Trabajo Final de Ingeniería de Sistemas de Información, e
 3. Si el producto no existe, el usuario puede darlo de alta mediante un formulario, que queda como sugerencia pendiente de confirmar por el administrador.
 4. Los precios se mantienen actualizados mediante scraping periódico de las distintas fuentes.
 
-## Arquitectura
+## Arquitectura  
 
-<!-- Añadir esquema arquitectura -->
+<img width="700" height="auto" alt="Arquitectura" src="https://github.com/user-attachments/assets/77230242-5e85-4e94-a53b-094770c01a34" />
+<p><br></p>
 
 - **Frontend**: build estático subido a S3, servido vía CloudFront (bucket 100% privado, acceso solo por OAC).
 - **Backend**: contenedor Docker en EC2 detrás de Nginx, dentro de una VPC con subred pública.
